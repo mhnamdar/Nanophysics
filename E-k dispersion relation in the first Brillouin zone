@@ -1,0 +1,20 @@
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+import numpy as np
+
+b = np.arange(-1, 1, 0.1)
+d = np.arange(-1, 1, 0.1)
+a0=int(input())
+
+kx, ky = np.meshgrid(b, d)
+E = np.sqrt((1+2*np.exp(-1j*a0*kx*np.sqrt(3)/2)*np.cos(ky*a0/2))*((1+2*np.exp(1j*a0*kx*np.sqrt(3)/2)*np.cos(ky*a0/2))) )
+
+fig = plt.figure()
+ax = Axes3D(fig)
+ax.plot_surface(kx, ky, E)
+ax.plot_surface(kx, ky, -E)
+plt.title("E-k dispersion relation in the first Brillouin zone")
+plt.xlabel('kx*a0/π')
+plt.ylabel('ky*a0/π')
+
+plt.show()
